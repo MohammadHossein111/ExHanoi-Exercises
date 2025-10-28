@@ -42,37 +42,64 @@ function diskCreator(number, className){
 
 // for Move A --> B use this: moves.push([A, B])
 function hanoi(from, via, to, n) {
-    return
+    if (n === 0) return;
+    hanoi(from, to, via, n - 1); 
+    moves.push([from, to]);      
+    hanoi(via, from, to, n - 1); 
 }
 
 function exHanoi_1(start, aux, end, n) {
-    alert("your function is not complete")
-    return
+     hanoi(start, aux, end, n);
 }  
 
 function exHanoi_2(A, B, C, D, n) {
-    alert("your function is not complete")
-    return
+     if(n === 0) return;
+    if(n === 1) {
+        moves.push([A, D]);
+        return;
+    }
+    let k = Math.floor(n/2);
+    exHanoi_2(A, D, C, B, k);
+    hanoi(A, B, D, n - k);
+    exHanoi_2(B, A, C, D, k);
 
 }
 
 function exhanoi_3(A, B, C, n) {
-    alert("your function is not complete")
-    return
+     if(n === 0) return;
+    for(let i = 0; i < n; i++){
+        moves.push([A, C]);
+        moves.push([A, B]);
+        moves.push([B, C]);
+    }
 
 }
 
 // before coding read about the extra rules for this ExHanoi
 function exhanoi_4(A, B, C, D, n) {
-    alert("your function is not complete")
-    return
+    if(n === 0) return;
+    if(n === 1) {
+        moves.push([A, D]);
+        return;
+    }
+    exhanoi_4(A, B, D, C, n-1);
+    moves.push([A, D]);
+    exhanoi_4(B, C, D, A, n-1);
 
 }
 
 // before coding read about the extra rules for this ExHanoi
 function exhanoi_5(A, B, C, D, n) {
-    alert("your function is not complete")
-    return
+      if (n === 0) return;
+    if (n === 1) {
+        moves.push([A, C]);
+        moves.push([A, B]);
+        moves.push([B, C]);
+        return;
+    }
+    exhanoi_5(A, B, C, D, n - 1);
+    moves.push([A, C]);
+    exhanoi_5(D, B, C, A, n - 1);
 
 }
 
